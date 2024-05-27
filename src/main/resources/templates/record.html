@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Record</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    .header-form,.footer-form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #dee2e6;
+    }
+    .header-form input {
+      width: 100%;
+      border: 1px solid #dee2e6;
+      text-align: center;
+    }
+    .header-row {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .score-sheet {
+      margin: 0;
+      border: 1px solid #dee2e6;
+    }
+    .score-sheet th, .score-sheet td {
+      border: 1px solid #dee2e6;
+      text-align: center;
+      vertical-align: middle;
+      padding: 3px;
+    }
+    .score-sheet input {
+      width: 100%;
+      border: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-7">
+      <form id="chessForm" th:action="@{/submitChessGame}" th:object="${chessGameModel}" method="post">
+        <div class="header-form">
+          <label class="ms-2">Date: </label>
+          <input type="date" class="ms-2" id="date" th:field="*{date}">
+          <label class="ms-2">Opening: </label>
+          <input type="text" class="ms-2" id="opening" th:field="*{opening}">
+          <label class="ms-2">White: </label>
+          <input type="text" class="ms-2" id="white" th:field="*{white}">
+          <label class="ms-2">Black: </label>
+          <input type="text" class="ms-2" id="black" th:field="*{black}">
+        </div>
+        <table class="table table-striped score-sheet">
+          <thead>
+          <tr class="header-row">
+            <th>#</th>
+            <th>White</th>
+            <th>Black</th>
+            <th>#</th>
+            <th>White</th>
+            <th>Black</th>
+          </tr>
+          </thead>
+          <tbody id="gameBoard">
+          <tr>
+            <td>1</td>
+            <td><input type="text" th:field="*{moves[0]}" name="moveWhite1"></td>
+            <td><input type="text" th:field="*{moves[1]}" name="moveBlack1"></td>
+            <td>26</td>
+            <td><input type="text" th:field="*{moves[50]}" name="moveWhite26"></td>
+            <td><input type="text" th:field="*{moves[51]}" name="moveBlack26"></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><input type="text" th:field="*{moves[2]}" name="moveWhite2"></td>
+            <td><input type="text" th:field="*{moves[3]}" name="moveBlack2"></td>
+            <td>27</td>
+            <td><input type="text" th:field="*{moves[52]}" name="moveWhite27"></td>
+            <td><input type="text" th:field="*{moves[53]}" name="moveBlack27"></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><input type="text" th:field="*{moves[4]}" name="moveWhite3"></td>
+            <td><input type="text" th:field="*{moves[5]}" name="moveBlack3"></td>
+            <td>28</td>
+            <td><input type="text" th:field="*{moves[54]}" name="moveWhite28"></td>
+            <td><input type="text" th:field="*{moves[55]}" name="moveBlack28"></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><input type="text" th:field="*{moves[6]}" name="moveWhite4"></td>
+            <td><input type="text" th:field="*{moves[7]}" name="moveBlack4"></td>
+            <td>29</td>
+            <td><input type="text" th:field="*{moves[56]}" name="moveWhite29"></td>
+            <td><input type="text" th:field="*{moves[57]}" name="moveBlack29"></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><input type="text" th:field="*{moves[8]}" name="moveWhite5"></td>
+            <td><input type="text" th:field="*{moves[9]}" name="moveBlack5"></td>
+            <td>30</td>
+            <td><input type="text" th:field="*{moves[58]}" name="moveWhite30"></td>
+            <td><input type="text" th:field="*{moves[59]}" name="moveBlack30"></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><input type="text" th:field="*{moves[10]}" name="moveWhite6"></td>
+            <td><input type="text" th:field="*{moves[11]}" name="moveBlack6"></td>
+            <td>31</td>
+            <td><input type="text" th:field="*{moves[60]}" name="moveWhite31"></td>
+            <td><input type="text" th:field="*{moves[61]}" name="moveBlack31"></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><input type="text" th:field="*{moves[12]}" name="moveWhite7"></td>
+            <td><input type="text" th:field="*{moves[13]}" name="moveBlack7"></td>
+            <td>32</td>
+            <td><input type="text" th:field="*{moves[62]}" name="moveWhite32"></td>
+            <td><input type="text" th:field="*{moves[63]}" name="moveBlack32"></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><input type="text" th:field="*{moves[14]}" name="moveWhite8"></td>
+            <td><input type="text" th:field="*{moves[15]}" name="moveBlack8"></td>
+            <td>33</td>
+            <td><input type="text" th:field="*{moves[64]}" name="moveWhite33"></td>
+            <td><input type="text" th:field="*{moves[65]}" name="moveBlack33"></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><input type="text" th:field="*{moves[16]}" name="moveWhite9"></td>
+            <td><input type="text" th:field="*{moves[17]}" name="moveBlack9"></td>
+            <td>34</td>
+            <td><input type="text" th:field="*{moves[66]}" name="moveWhite34"></td>
+            <td><input type="text" th:field="*{moves[67]}" name="moveBlack34"></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><input type="text" th:field="*{moves[18]}" name="moveWhite10"></td>
+            <td><input type="text" th:field="*{moves[19]}" name="moveBlack10"></td>
+            <td>35</td>
+            <td><input type="text" th:field="*{moves[68]}" name="moveWhite35"></td>
+            <td><input type="text" th:field="*{moves[69]}" name="moveBlack35"></td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td><input type="text" th:field="*{moves[20]}" name="moveWhite11"></td>
+            <td><input type="text" th:field="*{moves[21]}" name="moveBlack11"></td>
+            <td>36</td>
+            <td><input type="text" th:field="*{moves[70]}" name="moveWhite36"></td>
+            <td><input type="text" th:field="*{moves[71]}" name="moveBlack36"></td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td><input type="text" th:field="*{moves[22]}" name="moveWhite12"></td>
+            <td><input type="text" th:field="*{moves[23]}" name="moveBlack12"></td>
+            <td>37</td>
+            <td><input type="text" th:field="*{moves[72]}" name="moveWhite37"></td>
+            <td><input type="text" th:field="*{moves[73]}" name="moveBlack37"></td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td><input type="text" th:field="*{moves[24]}" name="moveWhite13"></td>
+            <td><input type="text" th:field="*{moves[25]}" name="moveBlack13"></td>
+            <td>38</td>
+            <td><input type="text" th:field="*{moves[74]}" name="moveWhite38"></td>
+            <td><input type="text" th:field="*{moves[75]}" name="moveBlack38"></td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td><input type="text" th:field="*{moves[26]}" name="moveWhite14"></td>
+            <td><input type="text" th:field="*{moves[27]}" name="moveBlack14"></td>
+            <td>39</td>
+            <td><input type="text" th:field="*{moves[76]}" name="moveWhite39"></td>
+            <td><input type="text" th:field="*{moves[77]}" name="moveBlack39"></td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td><input type="text" th:field="*{moves[28]}" name="moveWhite15"></td>
+            <td><input type="text" th:field="*{moves[29]}" name="moveBlack15"></td>
+            <td>40</td>
+            <td><input type="text" th:field="*{moves[78]}" name="moveWhite40"></td>
+            <td><input type="text" th:field="*{moves[79]}" name="moveBlack40"></td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td><input type="text" th:field="*{moves[30]}" name="moveWhite16"></td>
+            <td><input type="text" th:field="*{moves[31]}" name="moveBlack16"></td>
+            <td>41</td>
+            <td><input type="text" th:field="*{moves[80]}" name="moveWhite41"></td>
+            <td><input type="text" th:field="*{moves[81]}" name="moveBlack41"></td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td><input type="text" th:field="*{moves[32]}" name="moveWhite17"></td>
+            <td><input type="text" th:field="*{moves[33]}" name="moveBlack17"></td>
+            <td>42</td>
+            <td><input type="text" th:field="*{moves[82]}" name="moveWhite42"></td>
+            <td><input type="text" th:field="*{moves[83]}" name="moveBlack42"></td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td><input type="text" th:field="*{moves[34]}" name="moveWhite18"></td>
+            <td><input type="text" th:field="*{moves[35]}" name="moveBlack18"></td>
+            <td>43</td>
+            <td><input type="text" th:field="*{moves[84]}" name="moveWhite43"></td>
+            <td><input type="text" th:field="*{moves[85]}" name="moveBlack43"></td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td><input type="text" th:field="*{moves[36]}" name="moveWhite19"></td>
+            <td><input type="text" th:field="*{moves[37]}" name="moveBlack19"></td>
+            <td>44</td>
+            <td><input type="text" th:field="*{moves[86]}" name="moveWhite44"></td>
+            <td><input type="text" th:field="*{moves[87]}" name="moveBlack44"></td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td><input type="text" th:field="*{moves[38]}" name="moveWhite20"></td>
+            <td><input type="text" th:field="*{moves[39]}" name="moveBlack20"></td>
+            <td>45</td>
+            <td><input type="text" th:field="*{moves[88]}" name="moveWhite45"></td>
+            <td><input type="text" th:field="*{moves[89]}" name="moveBlack45"></td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td><input type="text" th:field="*{moves[40]}" name="moveWhite21"></td>
+            <td><input type="text" th:field="*{moves[41]}" name="moveBlack21"></td>
+            <td>46</td>
+            <td><input type="text" th:field="*{moves[90]}" name="moveWhite46"></td>
+            <td><input type="text" th:field="*{moves[91]}" name="moveBlack46"></td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td><input type="text" th:field="*{moves[42]}" name="moveWhite22"></td>
+            <td><input type="text" th:field="*{moves[43]}" name="moveBlack22"></td>
+            <td>47</td>
+            <td><input type="text" th:field="*{moves[92]}" name="moveWhite47"></td>
+            <td><input type="text" th:field="*{moves[93]}" name="moveBlack47"></td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td><input type="text" th:field="*{moves[44]}" name="moveWhite23"></td>
+            <td><input type="text" th:field="*{moves[45]}" name="moveBlack23"></td>
+            <td>48</td>
+            <td><input type="text" th:field="*{moves[94]}" name="moveWhite48"></td>
+            <td><input type="text" th:field="*{moves[95]}" name="moveBlack48"></td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td><input type="text" th:field="*{moves[46]}" name="moveWhite24"></td>
+            <td><input type="text" th:field="*{moves[47]}" name="moveBlack24"></td>
+            <td>49</td>
+            <td><input type="text" th:field="*{moves[96]}" name="moveWhite49"></td>
+            <td><input type="text" th:field="*{moves[97]}" name="moveBlack49"></td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td><input type="text" th:field="*{moves[48]}" name="moveWhite25"></td>
+            <td><input type="text" th:field="*{moves[49]}" name="moveBlack25"></td>
+            <td>50</td>
+            <td><input type="text" th:field="*{moves[98]}" name="moveWhite50"></td>
+            <td><input type="text" th:field="*{moves[99]}" name="moveBlack50"></td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="footer-form">
+          <label>Result:</label>
+          <label><input type="radio" name="result" value="white won" id="whiteWon" th:field="*{result}"> White won</label>
+          <label><input type="radio" name="result" value="black won" id="blackWon" th:field="*{result}"> Black won</label>
+          <label><input type="radio" name="result" value="tie" id="tie" th:field="*{result}"> Tie</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Chess Game</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
